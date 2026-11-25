@@ -42,6 +42,14 @@ cargo build --release
 cargo run --release
 ```
 
+The Installing step runs the `fisherman` backend with privileges, so a real
+install needs `/usr/local/bin/fisherman` on the host: natively the installer
+runs it through `sudo`, and inside the Flatpak through `flatpak-spawn --host
+pkexec`, which relies on the live ISO symlinking the bundled fisherman to that
+path and installing its polkit policy. On a development machine without that
+setup the wizard still runs through the Confirm step, but the Installing step
+fails with "Failed to run fisherman".
+
 ## Recipe
 
 Produces the same JSON recipe as the Qt/KDE installer.
